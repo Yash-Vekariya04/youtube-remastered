@@ -1,76 +1,130 @@
 const videos = {
   video1: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title",
-    channel: "Channel Name",
+    title:
+      "STREAM-1: CODING STREAM | PYTHON | RAG | AI | AGENTIC SYSTEMS | 100% FREE",
+    channel: "Yash Codzz",
     views: "1M views",
     uploaded: "1 year ago",
+    tags: ["All", "Coding", "Education", "Development", "Live"],
   },
   video2: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title 2",
-    channel: "Channel Name 2",
+    title:
+      "How Neural Networks ACTUALLY Work: Coding an AND Gate from Scratch (No Libraries)",
+    channel: "Yash Codzz",
     views: "2M views",
     uploaded: "2 years ago",
+    tags: ["All", "Coding", "Development", "Education", "Science"],
   },
   video3: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title 3",
-    channel: "Channel Name 3",
-    views: "3M views",
-    uploaded: "3 years ago",
+    title: "This is a travelling video",
+    channel: "Doni Bobes",
+    views: "2M views",
+    uploaded: "2 years ago",
+    tags: ["All", "trending", "City", "Travel"],
   },
   video4: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title 4",
-    channel: "Channel Name 4",
-    views: "4M views",
-    uploaded: "4 years ago",
+    title: "A cooking video",
+    channel: "Channel Name 3",
+    views: "3M views",
+    uploaded: "3 years ago",
+    tags: ["All", "trending", "Food", "Cooking"],
   },
   video5: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title 5",
-    channel: "Channel Name 5",
-    views: "5M views",
-    uploaded: "5 years ago",
+    title: "A gaming video",
+    channel: "Karfton India Esports",
+    views: "4M views",
+    uploaded: "4 years ago",
+    tags: ["All", "trending", "Gaming", "Esports"],
   },
   video6: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title 6",
-    channel: "Channel Name 6",
-    views: "2M views",
-    uploaded: "2 years ago",
+    title: "An educational video",
+    channel: "Vedantu",
+    views: "5M views",
+    uploaded: "5 years ago",
+    tags: ["All", "trending", "Education", "Science"],
   },
   video7: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title 7",
-    channel: "Channel Name 7",
+    title: " A live music video ",
+    channel: "Idleglance",
     views: "2M views",
     uploaded: "2 years ago",
+    tags: ["All", "trending", "Music", "Live"],
   },
   video8: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
-    title: "Video Title 8",
-    channel: "Channel Name 8",
+    title: "A lifestyle vlog",
+    channel: "Random Vlogger",
     views: "2M views",
     uploaded: "2 years ago",
+    tags: ["All", "Vlog", "Lifestyle"],
+  },
+  video9: {
+    thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
+    title: "A comedy sketch",
+    channel: "Funny Guy",
+    views: "2M views",
+    uploaded: "2 years ago",
+    tags: ["All", "Comedy", "Entertainment"],
   },
 };
 
-/* hamburger → collapse / expand the sidebar */
+const tags = [
+  "All",
+  "trending",
+  "Coding",
+  "Development",
+  "City",
+  "Food",
+  "Gaming",
+  "Education",
+  "Science",
+  "Music",
+  "Live",
+  "Comedy",
+  "Entertainment",
+  "Vlog",
+  "Lifestyle",
+];
+
+// hamburger → collapse / expand the sidebar
 document.querySelector("#menuBtn").addEventListener("click", () => {
   document.body.classList.toggle("side-mini");
 });
-/* chips → visual active state only for now (filtering comes in Step 4) */
+
+const chipsbar = document.querySelector("#chipsbar");
+
+// Render chips dynamically based on the tags array
+tags.forEach((tag) => {
+  const chip = document.createElement("button");
+  chip.classList.add("chip");
+  chip.classList.toggle("on", tag === "All");
+  chip.textContent = tag;
+  chipsbar.appendChild(chip);
+});
+
+//  chips → visual active state only for now
 document.querySelectorAll("#chipsbar .chip").forEach((chip) => {
   chip.addEventListener("click", () => {
     document
       .querySelectorAll("#chipsbar .chip")
       .forEach((c) => c.classList.remove("on"));
     chip.classList.add("on");
+
+    selectedChip = chip.textContent; // Update the selected tag
+    renderVideos(); // Re-render videos based on the selected chip
   });
 });
-/* sidebar items → visual active state for now */
+
+let selectedChip = "All"; // Default selected chip
+
+//  sidebar items → visual active state for now
 document.querySelectorAll(".sb-item, .mn-item").forEach((item) => {
   item.addEventListener("click", () => {
     item.parentElement
@@ -85,10 +139,22 @@ function renderVideos() {
   videoGrid.innerHTML = ""; // Clear existing videos
   // Here we take the search query
   const query = document.querySelector("#searchInput").value.toLowerCase();
+
   // Here we filter videos based on the search query
-  const filteredVideos = Object.values(videos).filter((video) =>
-    video.title.toLowerCase().includes(query) || video.channel.toLowerCase().includes(query),
-  );
+  const filteredVideos = Object.values(videos).filter((video) => {
+    const matchesTag =
+      selectedChip === "All" ||
+      video.tags.some(
+        (tag) => tag.toLowerCase() === selectedChip.toLowerCase(),
+      );
+
+    const matchesSearch =
+      video.title.toLowerCase().includes(query) ||
+      video.channel.toLowerCase().includes(query) ||
+      video.tags.some((tag) => tag.toLowerCase().includes(query));
+
+    return matchesTag && matchesSearch;
+  });
   // Here we render the filtered videos
   filteredVideos.forEach((video) => {
     const videoCard = document.createElement("div");
@@ -102,13 +168,13 @@ function renderVideos() {
     videoGrid.appendChild(videoCard);
   });
 }
-/* render all lucide icons */
+// render all lucide icons
 lucide.createIcons();
 
 const query = document.querySelector("#searchInput");
 
 if (query) {
-  searchInput.addEventListener("input", renderVideos);
+  query.addEventListener("input", renderVideos);
 }
 
 renderVideos();
