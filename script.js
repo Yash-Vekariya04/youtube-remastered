@@ -20,7 +20,7 @@ const videos = {
   video3: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
     title: "This is a travelling video",
-    channel: "Doni Bobes",
+    channel: "Mr Beast",
     views: "2M views",
     uploaded: "2 years ago",
     tags: ["All", "trending", "City", "Travel"],
@@ -28,7 +28,7 @@ const videos = {
   video4: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
     title: "A cooking video",
-    channel: "Channel Name 3",
+    channel: "Caseoh",
     views: "3M views",
     uploaded: "3 years ago",
     tags: ["All", "trending", "Food", "Cooking"],
@@ -36,12 +36,20 @@ const videos = {
   video5: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
     title: "A gaming video",
-    channel: "Karfton India Esports",
+    channel: "Doni Bobes",
     views: "4M views",
     uploaded: "4 years ago",
     tags: ["All", "trending", "Gaming", "Esports"],
   },
   video6: {
+    thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
+    title: "A gaming video",
+    channel: "Karfton India Esports",
+    views: "4M views",
+    uploaded: "4 years ago",
+    tags: ["All", "trending", "Gaming", "Esports"],
+  },
+  video7: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
     title: "An educational video",
     channel: "Vedantu",
@@ -49,7 +57,7 @@ const videos = {
     uploaded: "5 years ago",
     tags: ["All", "trending", "Education", "Science"],
   },
-  video7: {
+  video8: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
     title: " A live music video ",
     channel: "Idleglance",
@@ -57,7 +65,15 @@ const videos = {
     uploaded: "2 years ago",
     tags: ["All", "trending", "Music", "Live"],
   },
-  video8: {
+  video9: {
+    thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
+    title: " A live music video ",
+    channel: "Shake Music",
+    views: "2M views",
+    uploaded: "2 years ago",
+    tags: ["All", "trending", "Music", "Live"],
+  },
+  video10: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
     title: "A lifestyle vlog",
     channel: "Random Vlogger",
@@ -65,7 +81,7 @@ const videos = {
     uploaded: "2 years ago",
     tags: ["All", "Vlog", "Lifestyle"],
   },
-  video9: {
+  video11: {
     thumbnail: "https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg",
     title: "A comedy sketch",
     channel: "Funny Guy",
